@@ -73,8 +73,11 @@
   margin-bottom: 0.5rem;
 }
 i {
+  font-size: 0.9rem;
+  font-weight: 600;
   position: relative;
   display: none;
+  color: #444444;
 }
 .correct::before {
   content: "✔";

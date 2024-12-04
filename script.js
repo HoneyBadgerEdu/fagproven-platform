@@ -31,19 +31,21 @@ btnStart.addEventListener("click", function () {
     loadTest();
   }, 100);
   randomizeArray();
+  console.log(arrayOfRandomedQ);
 });
 
 async function loadTest() {
-  console.log(arrayOfRandomedQ)
   let questionCount = document.getElementById("questionCount");
   questionCount.innerHTML = currentQuestionNumber + 1;
   let questionNumber = document.getElementById("questionNumber");
-  questionNumber.innerHTML = arrayOfRandomedQ[currentQuestionNumber+1];
+  questionNumber.innerHTML = arrayOfRandomedQ[currentQuestionNumber + 1];
 
   //fetch test from markdown
 
   const testMarkdown = await fetch(
-    `./test-database/${testYear}/${arrayOfRandomedQ[currentQuestionNumber+1]}.md`
+    `./test-database/${testYear}/${
+      arrayOfRandomedQ[currentQuestionNumber + 1]
+    }.md`
   );
 
   const testContent = await testMarkdown.text();
@@ -76,10 +78,10 @@ async function loadTest() {
 //randomize question
 function randomizeArray() {
   let numbers = [];
-  for (let i = 0; i <= 28; i++) {
+  for (let i = 1; i <= 101; i++) {
     numbers.push(i);
   }
-  let uniqueNumbersArray = [0];
+  let uniqueNumbersArray = [];
   while (numbers.length > 0) {
     let randomIndex = Math.floor(Math.random() * numbers.length);
     let chosenNumber = numbers.splice(randomIndex, 1)[0];
@@ -216,14 +218,19 @@ let btnEnd = document.getElementById("btnEnd");
 let result = document.getElementById("result");
 let correctAnswers = 0;
 btnEnd.addEventListener("click", function () {
-  appContainer.style = "display: none";
-  resultsContainer.style = "display: block";
-  storedAnswers.forEach((answer) => {
-    if (answer.checkedAnswer == answer.rightAnswer) {
-      correctAnswers++;
-    }
-  });
-  result.innerHTML = `Du har: ${Math.round(
-    (correctAnswers * 100) / 140
-  )}%</br>Riktig svarer: ${correctAnswers} av 140`;
+  let finishedQuestion = window.confirm("Har du svaret på alle spørsmål?");
+  if (finishedQuestion) {
+    appContainer.style = "display: none";
+    resultsContainer.style = "display: block";
+    storedAnswers.forEach((answer) => {
+      if (answer.checkedAnswer == answer.rightAnswer) {
+        correctAnswers++;
+      }
+    });
+    result.innerHTML = `Du har: ${Math.round(
+      (correctAnswers * 100) / 140
+    )}%</br>Riktig svarer: ${correctAnswers} av 140`;
+  } else {
+    return;
+  }
 });
