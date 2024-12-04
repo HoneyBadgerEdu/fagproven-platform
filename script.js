@@ -1,11 +1,10 @@
 import grayMatter from "https://cdn.jsdelivr.net/npm/gray-matter@4.0.3/+esm";
 
 let testYear;
-let currentQuestionNumber = 1;
+let currentQuestionNumber = 0;
 let rightAnswer;
 
 let arrayOfRandomedQ = randomizeArray();
-let currentRandomedQIndex = -1;
 
 //most used elements
 const introContainer = document.querySelector(".intro-container");
@@ -35,15 +34,16 @@ btnStart.addEventListener("click", function () {
 });
 
 async function loadTest() {
+  console.log(arrayOfRandomedQ)
   let questionCount = document.getElementById("questionCount");
-  questionCount.innerHTML = currentQuestionNumber;
+  questionCount.innerHTML = currentQuestionNumber + 1;
   let questionNumber = document.getElementById("questionNumber");
-  questionNumber.innerHTML = arrayOfRandomedQ[0];
+  questionNumber.innerHTML = arrayOfRandomedQ[currentQuestionNumber+1];
 
   //fetch test from markdown
 
   const testMarkdown = await fetch(
-    `./test-database/${testYear}/${arrayOfRandomedQ[0]}.md`
+    `./test-database/${testYear}/${arrayOfRandomedQ[currentQuestionNumber+1]}.md`
   );
 
   const testContent = await testMarkdown.text();
@@ -76,10 +76,10 @@ async function loadTest() {
 //randomize question
 function randomizeArray() {
   let numbers = [];
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 28; i++) {
     numbers.push(i);
   }
-  let uniqueNumbersArray = [];
+  let uniqueNumbersArray = [0];
   while (numbers.length > 0) {
     let randomIndex = Math.floor(Math.random() * numbers.length);
     let chosenNumber = numbers.splice(randomIndex, 1)[0];

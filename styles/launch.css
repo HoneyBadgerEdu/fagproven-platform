@@ -81,7 +81,7 @@ i {
   color: #406453;
   position: absolute;
   margin-top:-10px;
-  margin-left:-15px;
+  margin-left:-20px;
   font-size: 1.3rem;
 }
 .wrong::before {
@@ -89,7 +89,7 @@ i {
   color: darkred;
   position: absolute;
   margin-top:-10px;
-  margin-left:-15px;
+  margin-left:-20px;
   font-size: 1.3rem;
 }
 #answerBtn {
