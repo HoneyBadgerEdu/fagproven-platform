@@ -29,9 +29,10 @@
 
 .navigator-container {
   display: flex;
+  align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 5vh;
+  height: 7vh;
   text-align: center;
   position: fixed;
   top: 0;
@@ -45,7 +46,7 @@
 
 .test-container {
   padding: 1em;
-  margin: 5vh 0;
+  margin: 7vh 0;
   background-color: #f0f0f050;
   height: 100%;
 }
@@ -96,8 +97,8 @@ i {
   font-size: 1.3rem;
 }
 #answerBtn {
-  padding: 0.75em 2em;
-  font-weight: 500;
+  padding: 1em 2em;
+  font-weight: 600;
   color: whitesmoke;
   border: none;
   border-radius: 10px;
@@ -118,7 +119,7 @@ i {
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  height: 6vh;
+  height: 8vh;
   width: 100%;
   text-align: center;
   bottom: 0;
@@ -128,7 +129,7 @@ i {
   background-color: #406453;
 }
 .bottom-buttons button {
-  padding: 0.5em 1em;
+  padding: 1em 1.5em;
   color: whitesmoke;
   font-weight: 500;
   border: none;

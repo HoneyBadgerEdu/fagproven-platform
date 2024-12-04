@@ -78,7 +78,7 @@ async function loadTest() {
 //randomize question
 function randomizeArray() {
   let numbers = [];
-  for (let i = 1; i <= 101; i++) {
+  for (let i = 1; i <= 141; i++) {
     numbers.push(i);
   }
   let uniqueNumbersArray = [];
@@ -195,7 +195,7 @@ function clearHTML() {
 let btnNextQ = document.getElementById("btnNextQ");
 btnNextQ.addEventListener("click", function () {
   clearHTML();
-  if (currentQuestionNumber != 140) {
+  if (currentQuestionNumber != 139) {
     currentQuestionNumber++;
   }
   loadTest();
