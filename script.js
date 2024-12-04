@@ -76,7 +76,7 @@ async function loadTest() {
 //randomize question
 function randomizeArray() {
   let numbers = [];
-  for (let i = 1; i <= 28; i++) {
+  for (let i = 0; i <= 28; i++) {
     numbers.push(i);
   }
   let uniqueNumbersArray = [0];
@@ -204,7 +204,7 @@ btnNextQ.addEventListener("click", function () {
 let btnPrevQ = document.getElementById("btnPrevQ");
 btnPrevQ.addEventListener("click", function () {
   clearHTML();
-  if (currentQuestionNumber != 1) {
+  if (currentQuestionNumber != 0) {
     currentQuestionNumber--;
   }
   loadTest();
