@@ -1,0 +1,161 @@
+/* USED ONLY IN KEYFORM */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.75em;
+  padding: 1em;
+  max-width: 95%;
+  margin: auto;
+  margin-top: 5rem !important;
+  background-color: #f0f0f050;
+  border-radius: 15px;
+}
+.intro-container *{
+  background-color: #f0f0f000;
+}
+
+#btnStart{
+  padding:1em;
+  background-color: #406453;
+  border: none;
+  border-radius: 15px;
+  color:whitesmoke;
+  cursor: pointer;
+}
+
+/* APPLICATION ITSELF */
+
+.navigator-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 5vh;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  background-color: #406453;
+}
+.navigator-container * {
+  background-color: #406453;
+  color: whitesmoke;
+  font-weight: 500;
+}
+
+.test-container {
+  padding: 1em;
+  margin: 5vh 0;
+  background-color: #f0f0f050;
+  height: 100%;
+}
+.test-container * {
+  width: auto;
+  background-color: #f0f0f000;
+}
+.image-container{
+  width: 20rem;
+  overflow: hidden;
+  padding:1em;
+}
+.image-container img{
+  display: none;
+  height: 100%;
+  width: 100%;
+  object-fit:contain;
+}
+.test-container ul {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+.test-container ul li {
+  margin-bottom: 0.5rem;
+}
+i {
+  position: relative;
+  display: none;
+}
+.correct::before {
+  content: "✔";
+  color: #406453;
+  position: absolute;
+  margin-top:-10px;
+  margin-left:-15px;
+  font-size: 1.3rem;
+}
+.wrong::before {
+  content: "✖";
+  color: darkred;
+  position: absolute;
+  margin-top:-10px;
+  margin-left:-15px;
+  font-size: 1.3rem;
+}
+#answerBtn {
+  padding: 0.75em 2em;
+  font-weight: 500;
+  color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  background-color: #406453;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#answerBtn:hover {
+  background-color: #40645399;
+}
+#isCorrect {
+  color: #406453;
+  font-weight: bold;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  height: 6vh;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  background-color: #406453;
+}
+.bottom-buttons div{
+  background-color: #406453;
+}
+.bottom-buttons button {
+  padding: 0.5em 1em;
+  color: whitesmoke;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.bottom-buttons button:hover{
+  background-color: #8E827199;
+}
+.results-container{
+  display: none;
+  text-align: center;
+  padding:5em 0.5em;
+}
+@media (min-width: 1100px) {
+  .intro-container{
+    max-width: 40%;
+  }
+  .content-container {
+    flex-direction: row;
+  }
+  .test-container {  
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+    border-radius: 15px;
+    margin:4em;
+  }
+  .image-container{
+    width: 30em;
+  }
+}

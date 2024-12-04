@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/launch.css" />
+    <title>Fagprøven Test Platform</title>
+  </head>
+
+  <body>
+    <div class="intro-container">
+      <h1>Fagprøven Test Platform</h1>
+      <p>
+        På denne platformen kan du øve seg til fagprøven for legen. <br />Du får
+        140 spørsmål. Alle spørsmål kommer i tilfeldig måte. Det er ingen tid
+        begrensning for nå. Men jeg kan bestemme meg å tilleg den seinere<br />Vennlig
+        ta kontakt gjennom telegram: @cat-scan.
+      </p>
+      <h2>Velge år:</h2>
+      <ul>
+        <li>
+          <input
+            type="radio"
+            id="host2022"
+            value="host2022"
+            name="testYear"
+          /><label for="host2022">Høst 2022</label>
+        </li>
+        <!-- <li><input type="radio" id="var2022" value="var2022" name="testYear"><label for="var2022">Vår 2022</label></li> -->
+      </ul>
+      <button id="btnStart">Start</button>
+    </div>
+
+    <div class="app-container" style="display: none">
+      <div class="navigator-container">
+        <p>Fagprøven Test Platform</p>
+        <p><span id="questionCount"></span>/140</p>
+      </div>
+      <div class="test-container">
+        <h2>Test №<span id="questionNumber"></span></h2>
+        <p id="question"></p>
+        <ul>
+          <li>
+            <input type="radio" id="radio0" name="option" value="0" /><label
+              for="radio0"
+              id="answer0"
+            ></label
+            ><br />
+            <i id="explanation0"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio1" name="option" value="1" /><label
+              for="radio1"
+              id="answer1"
+            ></label
+            ><br />
+            <i id="explanation1"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio2" name="option" value="2" /><label
+              for="radio2"
+              id="answer2"
+            ></label
+            ><br />
+            <i id="explanation2"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio3" name="option" value="3" /><label
+              for="radio3"
+              id="answer3"
+            ></label
+            ><br />
+            <i id="explanation3"></i>
+          </li>
+        </ul>
+        <div class="image-container"><img id="image" /></div>
+        <button id="answerBtn">Svare</button>
+        <p id="isCorrect"></p>
+      </div>
+      <div class="bottom-buttons">
+        <div>
+          <button id="btnPrevQ">Tidligere test</button>
+          <button id="btnNextQ">Nesten test</button>
+        </div>
+        <div>
+          <button id="btnEnd">Ferdig</button>
+        </div>
+      </div>
+    </div>
+    <div class="results-container">
+      <h2 id="result"></h2>
+      <a href="./">Gå til start</a>
+    </div>
+  </body>
+</html>
+
+<script type="module" src="./script.js"></script>
