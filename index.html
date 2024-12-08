@@ -1,89 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/launch.css" />
+    <title>Lege Fagprøve Plattform</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./styles/global.css" />
-  <link rel="stylesheet" href="./styles/launch.css" />
-  <title>Fagprøven Test Platform</title>
-</head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-9FMQMEGVHJ"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FMQMEGVHJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+    gtag("config", "G-9FMQMEGVHJ");
+  </script>
 
-  gtag('config', 'G-9FMQMEGVHJ');
-</script>
-
-<body>
-  <div class="intro-container">
-    <h1>Fagprøven Test Plattformen</h1>
-    <p>
-      På denne plattformen kan du øve til fagprøven for leger. <br />
-      Du får 140 spørsmål, og de vises i tilfeldig rekkefølge. Det er foreløpig ingen tidsbegrensning, men jeg kan
-      vurdere å legge 4 timer til det senere. <br />
-      Ta gjerne kontakt via Telegram: <a href="https://t.me/cat_scan">@cat-scan</a>
-    </p>
-    <h2>Velg år:</h2>
-    <ul>
-      <li>
-        <input type="radio" id="host2022" value="host2022" name="testYear" /><label for="host2022">Høst 2022</label>
-      </li>
-      <!-- <li><input type="radio" id="var2022" value="var2022" name="testYear"><label for="var2022">Vår 2022</label></li> -->
-    </ul>
-    <button id="btnStart">Start</button>
-  </div>
-
-  <div class="app-container" style="display: none">
-    <div class="navigator-container">
-      <p>Fagprøven Test Platform</p>
-      <p><span id="questionCount"></span>/140</p>
-    </div>
-    <div class="test-container">
-      <h2>Test <span id="questionNumber"></span></h2>
-      <p id="question"></p>
+  <body>
+    <div class="intro-container">
+      <h1>Lege Fagprøve Plattform</h1>
+      <p>
+        På denne plattformen kan du øve til fagprøven for leger. <br />
+        Du får 140 spørsmål, og de vises i tilfeldig rekkefølge.<br />
+        Jeg trenger hjelp til å formatere tester fra PDF dokument til noe
+        lignende DOCX Microsoft Word. Dette er enkelt oppgave, men tar litt tid.
+        <br />Ta gjerne kontakt via Telegram:
+        <a href="https://t.me/cat_scan">@cat-scan</a>
+      </p>
+      <h2>Velg år:</h2>
       <ul>
         <li>
-          <input type="radio" id="radio0" name="option" value="0" /><label for="radio0" id="answer0"></label><br />
-          <i id="explanation0"></i>
+          <input
+            type="radio"
+            id="host2022"
+            value="host2022"
+            name="testYear"
+          /><label for="host2022">Høst 2022</label>
         </li>
         <li>
-          <input type="radio" id="radio1" name="option" value="1" /><label for="radio1" id="answer1"></label><br />
-          <i id="explanation1"></i>
-        </li>
-        <li>
-          <input type="radio" id="radio2" name="option" value="2" /><label for="radio2" id="answer2"></label><br />
-          <i id="explanation2"></i>
-        </li>
-        <li>
-          <input type="radio" id="radio3" name="option" value="3" /><label for="radio3" id="answer3"></label><br />
-          <i id="explanation3"></i>
+          <input
+            type="radio"
+            id="var2022"
+            value="var2022"
+            name="testYear"
+          /><label for="var2022">Vår 2022 (10 tester for nå)</label>
         </li>
       </ul>
-      <div class="image-container"><img id="image" /></div>
-      <button id="answerBtn">Svare</button>
-      <p id="isCorrect"></p>
+      <button id="btnStart">Start</button>
     </div>
-    <div class="bottom-buttons">
-      <div>
-        <button id="btnPrevQ">Tidligere test</button>
-        <button id="btnNextQ">Nesten test</button>
-      </div>
-      <div>
-        <button id="btnEnd">Ferdig</button>
-      </div>
-    </div>
-  </div>
-  <div class="results-container">
-    <h2 id="result"></h2>
-    <a href="./">Gå til start</a>
-  </div>
-</body>
 
+    <div class="app-container" style="display: none">
+      <div class="navigator-container">
+        <p>Lege Fagprøve Plattform</p>
+        <p><span id="questionCount"></span>/140</p>
+      </div>
+      <div class="test-container">
+        <h2>Test <span id="questionNumber"></span></h2>
+        <p id="question"></p>
+        <ul>
+          <li>
+            <input type="radio" id="radio0" name="option" value="0" /><label
+              for="radio0"
+              id="answer0"
+            ></label
+            ><br />
+            <i id="explanation0"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio1" name="option" value="1" /><label
+              for="radio1"
+              id="answer1"
+            ></label
+            ><br />
+            <i id="explanation1"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio2" name="option" value="2" /><label
+              for="radio2"
+              id="answer2"
+            ></label
+            ><br />
+            <i id="explanation2"></i>
+          </li>
+          <li>
+            <input type="radio" id="radio3" name="option" value="3" /><label
+              for="radio3"
+              id="answer3"
+            ></label
+            ><br />
+            <i id="explanation3"></i>
+          </li>
+        </ul>
+        <div class="image-container"><img id="image" /></div>
+        <button id="answerBtn">Svare</button>
+        <p id="isCorrect"></p>
+      </div>
+      <div class="bottom-buttons">
+        <div>
+          <button id="btnPrevQ">Forrige test</button>
+          <button id="btnNextQ">Neste test</button>
+        </div>
+        <div>
+          <button id="btnEnd">Ferdig</button>
+        </div>
+      </div>
+    </div>
+    <div class="results-container">
+      <h2 id="result"></h2>
+      <a href="./">Gå til start</a>
+    </div>
+  </body>
 </html>
 
 <script type="module" src="./script.js"></script>

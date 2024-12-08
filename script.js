@@ -78,7 +78,7 @@ async function loadTest() {
 //randomize question
 function randomizeArray() {
   let numbers = [];
-  for (let i = 1; i <= 141; i++) {
+  for (let i = 1; i <= 140; i++) {
     numbers.push(i);
   }
   let uniqueNumbersArray = [];
