@@ -31,20 +31,21 @@ btnStart.addEventListener("click", function () {
     loadTest();
   }, 100);
   randomizeArray();
-  console.log(arrayOfRandomedQ);
+  btnPrevQ.style = "display:none";
 });
 
 async function loadTest() {
+  console.log(currentQuestionNumber);
   let questionCount = document.getElementById("questionCount");
   questionCount.innerHTML = currentQuestionNumber + 1;
   let questionNumber = document.getElementById("questionNumber");
-  questionNumber.innerHTML = arrayOfRandomedQ[currentQuestionNumber + 1];
+  questionNumber.innerHTML = arrayOfRandomedQ[currentQuestionNumber];
 
   //fetch test from markdown
 
   const testMarkdown = await fetch(
     `./test-database/${testYear}/${
-      arrayOfRandomedQ[currentQuestionNumber + 1]
+      arrayOfRandomedQ[currentQuestionNumber]
     }.md`
   );
 
@@ -197,6 +198,11 @@ btnNextQ.addEventListener("click", function () {
   clearHTML();
   if (currentQuestionNumber != 139) {
     currentQuestionNumber++;
+    btnNextQ.style = "display: inline-block"
+    btnPrevQ.style = "display:inline-block"
+  }
+  if (currentQuestionNumber == 139){
+    btnNextQ.style = "display:none"
   }
   loadTest();
   checkIfWasAnswered();
@@ -208,6 +214,11 @@ btnPrevQ.addEventListener("click", function () {
   clearHTML();
   if (currentQuestionNumber != 0) {
     currentQuestionNumber--;
+    btnPrevQ.style = "display:inline-block"
+    btnNextQ.style = "display: inline-block"
+  }
+  if (currentQuestionNumber == 0){
+    btnPrevQ.style = "display:none"
   }
   loadTest();
   checkIfWasAnswered();
