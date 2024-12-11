@@ -11,3 +11,8 @@
 p {
   line-height: 2rem;
 }
+input{
+  width: 1rem;
+  height: 1rem;
+  margin-right: 5px;
+}
