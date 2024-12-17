@@ -44,9 +44,7 @@ async function loadTest() {
   //fetch test from markdown
 
   const testMarkdown = await fetch(
-    `./test-database/${testYear}/${
-      arrayOfRandomedQ[currentQuestionNumber]
-    }.md`
+    `./test-database/${testYear}/${arrayOfRandomedQ[currentQuestionNumber]}.md`
   );
 
   const testContent = await testMarkdown.text();
@@ -198,11 +196,11 @@ btnNextQ.addEventListener("click", function () {
   clearHTML();
   if (currentQuestionNumber != 139) {
     currentQuestionNumber++;
-    btnNextQ.style = "display: inline-block"
-    btnPrevQ.style = "display:inline-block"
+    btnNextQ.style = "display: inline-block";
+    btnPrevQ.style = "display: inline-block";
   }
-  if (currentQuestionNumber == 139){
-    btnNextQ.style = "display:none"
+  if (currentQuestionNumber == 139) {
+    btnNextQ.style = "display:none";
   }
   loadTest();
   checkIfWasAnswered();
@@ -214,11 +212,11 @@ btnPrevQ.addEventListener("click", function () {
   clearHTML();
   if (currentQuestionNumber != 0) {
     currentQuestionNumber--;
-    btnPrevQ.style = "display:inline-block"
-    btnNextQ.style = "display: inline-block"
+    btnPrevQ.style = "display: inline-block";
+    btnNextQ.style = "display: inline-block";
   }
-  if (currentQuestionNumber == 0){
-    btnPrevQ.style = "display:none"
+  if (currentQuestionNumber == 0) {
+    btnPrevQ.style = "display:none";
   }
   loadTest();
   checkIfWasAnswered();
