@@ -44,7 +44,7 @@ async function loadTest() {
   //fetch test from markdown
 
   const testMarkdown = await fetch(
-    `./test-database/${testYear}/${arrayOfRandomedQ[currentQuestionNumber]}.md`
+    `./test-database/${testYear}/${arrayOfRandomedQ[currentQuestionNumber]}.md`,
   );
 
   const testContent = await testMarkdown.text();
@@ -118,7 +118,7 @@ function markAnswer() {
 let storedAnswers = [];
 function pushAnswerInArray() {
   let existingAnswer = storedAnswers.find(
-    (item) => item.currentQuestionNumber === currentQuestionNumber
+    (item) => item.currentQuestionNumber === currentQuestionNumber,
   );
   if (existingAnswer == storedAnswers.currentQuestionNumber) {
     storedAnswers.push({ currentQuestionNumber, checkedAnswer, rightAnswer });
@@ -130,7 +130,7 @@ answerBtn.addEventListener("click", checkIfCorrect);
 function checkIfCorrect() {
   checkedRadio();
   if (checkedAnswer == undefined) {
-    window.alert("Необхідно обрати відповідь");
+    window.alert("Svaret må velges");
     return;
   } else if (rightAnswer == checkedAnswer) {
     markAnswer();
@@ -151,7 +151,7 @@ function checkIfCorrect() {
 //check if answer was already in aswered (after pressing next, prev buttons), if yes show answer
 function checkIfWasAnswered() {
   let existingAnswer = storedAnswers.find(
-    (item) => item.currentQuestionNumber === currentQuestionNumber
+    (item) => item.currentQuestionNumber === currentQuestionNumber,
   );
   setTimeout(() => {
     if (existingAnswer) {
@@ -159,7 +159,7 @@ function checkIfWasAnswered() {
       markAnswer();
       checkIfCorrect();
     }
-  }, 100);
+  }, 50);
 }
 
 //CLEAR HTML BEFORE PRESSING NEXT/PREV BUTTONS
@@ -202,8 +202,12 @@ btnNextQ.addEventListener("click", function () {
   if (currentQuestionNumber == 139) {
     btnNextQ.style = "display:none";
   }
+  btnNextQ.style = "pointer-events:none";
   loadTest();
   checkIfWasAnswered();
+  setTimeout(() => {
+    btnNextQ.style = "pointer-events:auto";
+  }, 300);
 });
 
 //PRESS "PREV"
@@ -218,8 +222,12 @@ btnPrevQ.addEventListener("click", function () {
   if (currentQuestionNumber == 0) {
     btnPrevQ.style = "display:none";
   }
+  btnPrevQ.style = "pointer-events:none";
   loadTest();
   checkIfWasAnswered();
+  setTimeout(() => {
+    btnPrevQ.style = "pointer-events:auto";
+  }, 300);
 });
 
 //PRESS "END"
@@ -237,7 +245,7 @@ btnEnd.addEventListener("click", function () {
       }
     });
     result.innerHTML = `Du har: ${Math.round(
-      (correctAnswers * 100) / 140
+      (correctAnswers * 100) / 140,
     )}%</br>Riktig svarer: ${correctAnswers} av 140`;
   } else {
     return;
