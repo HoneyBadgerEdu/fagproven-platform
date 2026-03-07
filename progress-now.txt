@@ -1,0 +1,17 @@
+
+
+---
+question: ""
+answer0: ""
+explanation0: ""
+answer1: ""
+explanation1: ""
+answer2: ""
+explanation2: ""
+answer3: ""
+explanation3: ""
+rightAnswer: 
+---
+image: "./img/host2023/5.png"
+alternativeRightAnswer: 
+notabene: ""

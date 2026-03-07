@@ -6,14 +6,52 @@
   overflow-x: hidden;
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
-  background-color: #8E8271;
+  background-color: #8e8271;
   accent-color: #406453;
 }
 p {
   line-height: 2rem;
 }
-input{
+input {
   width: 1rem;
   height: 1rem;
   margin-right: 5px;
+}
+button {
+  padding: 1em 1.5em;
+  color: whitesmoke;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #8e827199;
+}
+dialog {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  overflow: hidden;
+  background-color: #fff;
+  backdrop-filter: color(#111);
+  padding: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+dialog textarea {
+  width: 90%;
+  height: 80%;
+  padding: 1rem;
+  border: 1px solid #fff;
+}
+@media (min-width: 1100px) {
+  dialog {
+    width: 30%;
+    height: 60%;
+  }
 }

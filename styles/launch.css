@@ -113,7 +113,11 @@ i {
   color: #406453;
   font-weight: bold;
 }
-
+#notabene{
+  display: none;
+  font-style: italic;
+  font-weight: 600;
+}
 .bottom-buttons {
   display: flex;
   justify-content: space-around;
@@ -127,18 +131,6 @@ i {
 }
 .bottom-buttons div{
   background-color: #406453;
-}
-.bottom-buttons button {
-  padding: 1em 1.5em;
-  color: whitesmoke;
-  font-weight: 500;
-  border: none;
-  border-radius: 10px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.bottom-buttons button:hover{
-  background-color: #8E827199;
 }
 .results-container{
   display: none;

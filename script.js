@@ -3,6 +3,9 @@ import grayMatter from "https://cdn.jsdelivr.net/npm/gray-matter@4.0.3/+esm";
 let testYear;
 let currentQuestionNumber = 0;
 let rightAnswer;
+let alternativeRightAnswer;
+
+let testFileName; //for debuging
 
 let arrayOfRandomedQ = randomizeArray();
 
@@ -11,6 +14,9 @@ const introContainer = document.querySelector(".intro-container");
 const appContainer = document.querySelector(".app-container");
 const testContainer = document.querySelector(".test-container");
 const resultsContainer = document.querySelector(".results-container");
+//for debuing
+const messageDiv = document.getElementById("messageForUser");
+const usersMessage = document.getElementById("messageText");
 
 //start test
 const btnStart = document.getElementById("btnStart");
@@ -35,7 +41,6 @@ btnStart.addEventListener("click", function () {
 });
 
 async function loadTest() {
-  console.log(currentQuestionNumber);
   let questionCount = document.getElementById("questionCount");
   questionCount.innerHTML = currentQuestionNumber + 1;
   let questionNumber = document.getElementById("questionNumber");
@@ -63,6 +68,9 @@ async function loadTest() {
   answer3.innerHTML = parsedData.data.answer3;
   explanation3.innerText = parsedData.data.explanation3;
   rightAnswer = parsedData.data.rightAnswer;
+  alternativeRightAnswer = parsedData.data.alternativeRightAnswer;
+
+  notabene.innerHTML = parsedData.data.notabene;
 
   //image processing
   let markDownImg = parsedData.data.image;
@@ -72,6 +80,8 @@ async function loadTest() {
     testImage.src = parsedData.data.image;
     testImage.style = "display:block";
   }
+  //for debug dialog
+  testFileName = testYear + " " + arrayOfRandomedQ[currentQuestionNumber];
 }
 
 //randomize question
@@ -104,7 +114,7 @@ function checkedRadio() {
 //mark right answer with check, wrong with cross
 function markAnswer() {
   inputValue.forEach((option) => {
-    if (option.value == rightAnswer) {
+    if (option.value == rightAnswer || option.value == alternativeRightAnswer) {
       option.classList.add("correct");
     } else if (option.value == checkedAnswer) {
       option.classList.add("wrong");
@@ -121,18 +131,27 @@ function pushAnswerInArray() {
     (item) => item.currentQuestionNumber === currentQuestionNumber,
   );
   if (existingAnswer == storedAnswers.currentQuestionNumber) {
-    storedAnswers.push({ currentQuestionNumber, checkedAnswer, rightAnswer });
+    storedAnswers.push({
+      currentQuestionNumber,
+      checkedAnswer,
+      rightAnswer,
+      alternativeRightAnswer,
+    });
   }
 }
-//check if answer right + remove poiner event
+//check if answer right, remove poiner event from checks, show notabene
 let isCorrect = document.getElementById("isCorrect");
+let notabene = document.getElementById("notabene");
 answerBtn.addEventListener("click", checkIfCorrect);
 function checkIfCorrect() {
   checkedRadio();
   if (checkedAnswer == undefined) {
     window.alert("Svaret må velges");
     return;
-  } else if (rightAnswer == checkedAnswer) {
+  } else if (
+    rightAnswer == checkedAnswer ||
+    alternativeRightAnswer == checkedAnswer
+  ) {
     markAnswer();
     isCorrect.innerHTML = "Svaret er riktig";
     isCorrect.style = "color:green";
@@ -146,6 +165,9 @@ function checkIfCorrect() {
   let explanation = document.querySelectorAll("i");
   for (let h = 0; h < explanation.length; h++) {
     explanation[h].style = "display: block";
+  }
+  if (alternativeRightAnswer != undefined) {
+    notabene.style = "display:block";
   }
 }
 //check if answer was already in aswered (after pressing next, prev buttons), if yes show answer
@@ -188,6 +210,7 @@ function clearHTML() {
   for (let i = 0; i < input.length; i++) {
     input[i].checked = false;
   }
+  notabene.style = "display:none";
 }
 
 //PRESS "NEXT"
@@ -208,6 +231,8 @@ btnNextQ.addEventListener("click", function () {
   setTimeout(() => {
     btnNextQ.style = "pointer-events:auto";
   }, 300);
+  messageDiv.innerHTML = "";
+  usersMessage.value = "";
 });
 
 //PRESS "PREV"
@@ -220,7 +245,7 @@ btnPrevQ.addEventListener("click", function () {
     btnNextQ.style = "display: inline-block";
   }
   if (currentQuestionNumber == 0) {
-    btnPrevQ.style = "display:none";
+    btnPrevQ.style = "display: none";
   }
   btnPrevQ.style = "pointer-events:none";
   loadTest();
@@ -228,6 +253,8 @@ btnPrevQ.addEventListener("click", function () {
   setTimeout(() => {
     btnPrevQ.style = "pointer-events:auto";
   }, 300);
+  messageDiv.innerHTML = "";
+  usersMessage.value = "";
 });
 
 //PRESS "END"
@@ -240,7 +267,10 @@ btnEnd.addEventListener("click", function () {
     appContainer.style = "display: none";
     resultsContainer.style = "display: block";
     storedAnswers.forEach((answer) => {
-      if (answer.checkedAnswer == answer.rightAnswer) {
+      if (
+        answer.checkedAnswer == answer.rightAnswer ||
+        answer.checkedAnswer == answer.alternativeRightAnswer
+      ) {
         correctAnswers++;
       }
     });
@@ -249,5 +279,62 @@ btnEnd.addEventListener("click", function () {
     )}%</br>Riktig svarer: ${correctAnswers} av 140`;
   } else {
     return;
+  }
+});
+
+//SEND REPORT
+
+const WORKER_URL = "https://legen-feedback.user27384.workers.dev/";
+
+const submitBtn = document.getElementById("submitBtn");
+
+function showMessage(text, type) {
+  messageDiv.textContent = text;
+  messageDiv.className = `message ${type} show`;
+  setTimeout(() => {
+    messageDiv.classList.remove("show");
+  }, 5000);
+}
+
+submitBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const dialogData = {
+    name: testFileName,
+    message: usersMessage.value,
+  };
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+
+  try {
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dialogData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      showMessage(
+        "Tusen takk! Det ble sendt. Blir fikset om 3-5 dager",
+        "success",
+      );
+    } else {
+      showMessage(
+        data.error || "Something went wrong. Please try again.",
+        "error",
+      );
+    }
+  } catch (error) {
+    showMessage(
+      "Failed to send feedback. Please check your connection.",
+      "error",
+    );
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Sende rapport";
   }
 });
