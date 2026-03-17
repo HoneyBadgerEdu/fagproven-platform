@@ -32,7 +32,9 @@
         rekkefølge.<br />
         Etter svaret vil du motta prøveløsningen.<br />
         På slutten kan du se resultatet sitt.<br />
-        For tiden i arbeid: <b>Vår 2024</b><br />
+        For tiden i arbeid: <br />
+        <b>- Vår 2024</b><br />
+        <b>- Timer på eksamen modus</b><br />
         Forventet ferdigstillelsesdato: <b>31.03.2026 - 31.06.2026</b> <br />
         Dette er frivillig projekt, så det tar tid.<br />
         Våren 2023 tester laget av <b>Liudmyla Naumenko.</b><br />
@@ -76,6 +78,21 @@
           /><label for="host2023">Høst 2023</label>
         </li>
       </ul>
+      <h2>Velge modus</h2>
+      <ul>
+        <li>
+          <input type="radio" name="modus" id="trening" value="trening" /><label
+            for="trening"
+            >Trening modus</label
+          >
+        </li>
+        <li>
+          <input type="radio" name="modus" id="exam" value="exam" /><label
+            for="exam"
+            >Eksamen modus</label
+          >
+        </li>
+      </ul>
       <button id="btnStart">Start</button>
     </div>
 
@@ -85,16 +102,16 @@
         <p><span id="questionCount"></span>/140</p>
         <button command="show-modal" commandfor="bug">🐛Rapportere feil</button>
         <dialog id="bug">
-            <h3>🐛Rapportere test feil</h3>
-              <div id="messageForUser"></div>
-            <textarea
-              id="messageText"
-              placeholder="Test nmr er allerede hentet. Hva er feil med testen? f.e <bildet ikke vises>"
-            ></textarea>
-            <div>
-              <button id="submitBtn" type="submit">Sende rapport</button>
-              <button commandfor="bug" command="close">Lukk</button>
-            </div>
+          <h3>🐛Rapportere test feil</h3>
+          <div id="messageForUser"></div>
+          <textarea
+            id="messageText"
+            placeholder="Test nmr er allerede hentet. Hva er feil med testen? f.e <bildet ikke vises>"
+          ></textarea>
+          <div>
+            <button id="submitBtn" type="submit">Sende rapport</button>
+            <button commandfor="bug" command="close">Lukk</button>
+          </div>
         </dialog>
       </div>
       <div class="test-container">
@@ -157,4 +174,5 @@
   </body>
 </html>
 
-<script type="module" src="./script.js"></script>
+<script type="module" src="./src/app.js"></script>
+<script type="module" src="./src/features/feedback/feedback.js"></script>
