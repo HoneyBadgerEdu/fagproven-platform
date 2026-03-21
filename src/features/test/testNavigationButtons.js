@@ -5,9 +5,13 @@ import {
   modus,
 } from "../../state.js";
 import { clearHTML } from "../../utils/dom.js";
-import { loadTestExam } from "./testModusExam.js";
-import { loadTestTrening } from "./testModusTrening.js";
-import { storedAnswers, checkIfCorrect, checkRadioIfAnswered, inputValue } from "./testAnswersManagment.js";
+import { loadTest } from "./testLoad.js";
+import {
+  storedAnswers,
+  checkIfCorrect,
+  checkRadioIfAnswered,
+  inputValue,
+} from "./testAnswersManagment.js";
 import {
   NextButton,
   PreviousButton,
@@ -21,7 +25,7 @@ const usersMessage = document.getElementById("messageText");
 const appContainer = document.querySelector(".app-container");
 const testContainer = document.querySelector(".test-container");
 const resultsContainer = document.querySelector(".results-container");
-const answerButton = document.getElementById("answerBtn")
+const answerButton = document.getElementById("answerBtn");
 
 export function nextTestEvaluation() {
   clearHTML();
@@ -34,14 +38,8 @@ export function nextTestEvaluation() {
     btnNextQ.style = "display:none";
   }
   btnNextQ.style = "pointer-events:none";
-
-  if (modus == "trening") {
-    loadTestTrening();
-    checkRadioIfAnswered();
-  } else if (modus == "exam") {
-    loadTestExam();
-    checkRadioIfAnswered();
-  }
+  loadTest();
+  checkRadioIfAnswered();
   setTimeout(() => {
     btnNextQ.style = "pointer-events:auto";
   }, 300);
@@ -53,7 +51,7 @@ NextButton(nextTestEvaluation);
 
 export function prevTestEvaluation() {
   clearHTML();
-  if (currentQuestionNumber != 0) {
+  if (currentQuestionNumber !== 0) {
     setCurrentQuestionNumber(currentQuestionNumber - 1);
     btnPrevQ.style = "display: inline-block";
     btnNextQ.style = "display: inline-block";
@@ -62,13 +60,8 @@ export function prevTestEvaluation() {
     btnPrevQ.style = "display: none";
   }
   btnPrevQ.style = "pointer-events:none";
-  if (modus == "trening") {
-    loadTestTrening();
-    checkRadioIfAnswered();
-  } else if (modus == "exam") {
-    loadTestExam();
-    checkRadioIfAnswered();
-  }
+  loadTest();
+  checkRadioIfAnswered();
   setTimeout(() => {
     btnPrevQ.style = "pointer-events:auto";
   }, 300);
@@ -79,13 +72,13 @@ export function prevTestEvaluation() {
 PreviousButton(prevTestEvaluation);
 
 export function answerTestEvaluation() {
-    inputValue.forEach((option) => {
-      if (option.checked) {
-        setCheckedAnswer(option.value);
-      }
-    });
-    answerButton.style = "display: none"
-    checkIfCorrect();
+  inputValue.forEach((option) => {
+    if (option.checked) {
+      setCheckedAnswer(option.value);
+    }
+  });
+  answerButton.style = "display: none";
+  checkIfCorrect();
 }
 
 AnswerButton(answerTestEvaluation);
@@ -94,7 +87,7 @@ export function endTestEvaluation() {
   const result = document.getElementById("result");
   let correctAnswers = 0;
   let finishedQuestion = window.confirm("Har du svaret på alle spørsmål?");
-  if (finishedQuestion =! undefined) {
+  if ((finishedQuestion = !undefined)) {
     appContainer.style = "display: none";
     resultsContainer.style = "display: block";
     storedAnswers.forEach((answer) => {
@@ -114,3 +107,9 @@ export function endTestEvaluation() {
 }
 
 EndButton(endTestEvaluation);
+
+export function loadButtons() {
+  NextButton(nextTestEvaluation);
+  PreviousButton(prevTestEvaluation);
+  AnswerButton(answerTestEvaluation);
+}

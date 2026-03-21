@@ -1,7 +1,8 @@
-import { inputValue} from "../features/test/testAnswersManagment.js";
+import { inputValue } from "../features/test/testAnswersManagment.js";
 import { setCheckedAnswer, setRightAnswer } from "../state.js";
+
 const testContainer = document.querySelector(".test-container");
-const answerButton = document.getElementById("answerBtn")
+const answerButton = document.getElementById("answerBtn");
 
 export function clearHTML() {
   document.getElementById("questionNumber").innerHTML = "";
@@ -18,13 +19,12 @@ export function clearHTML() {
     explanation[h].innerText = "";
     explanation[h].style = "display:none";
   }
-  answerButton.style = "display:block"
+  answerButton.style = "display: block";
   document.getElementById("image").style = "display:none";
   setCheckedAnswer(undefined);
   setRightAnswer(null);
-  testContainer.style = "display: none";
   isCorrect.innerHTML = "";
-  testContainer.style = "pointer-events: auto";
+  testContainer.style.pointerEvents = "auto";
   let input = document.querySelectorAll("input");
   for (let i = 0; i < input.length; i++) {
     input[i].checked = false;

@@ -1,5 +1,4 @@
-import { loadTestTrening } from "../features/test/testModusTrening.js";
-import { loadTestExam } from "../features/test/testModusExam.js";
+import { loadTest } from "../features/test/testLoad.js";
 import { testYear, setTestYear, modus, setModus } from "../state.js";
 
 export function loadStartPage() {
@@ -32,17 +31,8 @@ export function loadStartPage() {
     setTimeout(() => {
       introContainer.style = "display: none";
       appContainer.style = "display: block";
-      checkModus();
+      loadTest();
     }, 200);
     btnPrevQ.style = "display:none";
   });
-
-  function checkModus() {
-    if (modus == "trening") {
-      loadTestTrening();
-    }
-    if (modus == "exam") {
-      loadTestExam();
-    }
-  }
 }

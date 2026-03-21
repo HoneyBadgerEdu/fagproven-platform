@@ -1,11 +1,10 @@
 import { setArrayOfRandomedQ } from "./state.js";
 import { loadStartPage } from "./pages/startPage.js";
 
-addEventListener("DOMContentLoaded", ()=>{
-    loadStartPage();
-    randomizeArray();
-})
-
+addEventListener("DOMContentLoaded", () => {
+  loadStartPage();
+  randomizeArray();
+});
 
 export function randomizeArray() {
   let numbers = [];
