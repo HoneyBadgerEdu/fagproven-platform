@@ -42,7 +42,7 @@ export function nextTestEvaluation() {
   checkRadioIfAnswered();
   setTimeout(() => {
     btnNextQ.style = "pointer-events:auto";
-  }, 300);
+  }, 400);
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
@@ -64,7 +64,7 @@ export function prevTestEvaluation() {
   checkRadioIfAnswered();
   setTimeout(() => {
     btnPrevQ.style = "pointer-events:auto";
-  }, 300);
+  }, 400);
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
@@ -77,7 +77,6 @@ export function answerTestEvaluation() {
       setCheckedAnswer(option.value);
     }
   });
-  answerButton.style = "display: none";
   checkIfCorrect();
 }
 

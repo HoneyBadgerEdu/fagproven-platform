@@ -14,7 +14,6 @@ import {
   setCheckedAnswer,
 } from "../../state.js";
 
-let notabene = document.getElementById("notabene");
 const testContainer = document.querySelector(".test-container");
 
 import { loadButtons } from "./testNavigationButtons.js";
@@ -51,9 +50,8 @@ export async function loadTest() {
       explanation1.innerText = parsedData.data.explanation1;
       explanation2.innerText = parsedData.data.explanation2;
       explanation3.innerText = parsedData.data.explanation3;
-      notabene.innerHTML = parsedData.data.notabene;
+      notabene.innerText = parsedData.data.notabene;
     }
-
     setRightAnswer(parsedData.data.rightAnswer);
     setAlternativeRightAnswer(parsedData.data.alternativeRightAnswer);
 

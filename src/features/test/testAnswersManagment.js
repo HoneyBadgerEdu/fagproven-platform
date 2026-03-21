@@ -4,12 +4,12 @@ import {
   alternativeRightAnswer,
   checkedAnswer,
   setCheckedAnswer,
-  modus
+  modus,
 } from "../../state.js";
 
 export let inputValue = document.querySelectorAll(`input[name="option"]`);
 const testContainer = document.querySelector(".test-container");
-const answerButton = document.getElementById("answerBtn")
+const answerButton = document.getElementById("answerBtn");
 
 export let storedAnswers = [];
 
@@ -71,12 +71,13 @@ export function checkIfCorrect() {
       isCorrect.style = "color:darkred";
     }
     pushAnswerInArray();
+    answerButton.style = "display: none";
     testContainer.style = "pointer-events: none";
     let explanation = document.querySelectorAll("i");
     for (let h = 0; h < explanation.length; h++) {
       explanation[h].style = "display: block";
     }
-    if (alternativeRightAnswer != undefined) {
+    if (notabene.innerText !== "undefined") {
       notabene.style = "display:block";
     }
   } else if (modus == "exam") {
@@ -98,7 +99,7 @@ export function checkRadioIfAnswered() {
       setCheckedAnswer(existingAnswer.checkedAnswer);
       markAnswer();
       checkIfCorrect();
-      answerButton.style = "display: none"
+      answerButton.style = "display: none";
     }
   }, 50);
 }
