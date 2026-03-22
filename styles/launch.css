@@ -110,7 +110,7 @@ i {
   background-color: #40645399;
 }
 .timer {
-  display: flex;
+  display: none;
   font-size: 12px;
   position: fixed;
   bottom: 10vh;

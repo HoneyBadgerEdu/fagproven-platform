@@ -43,7 +43,6 @@ export function nextTestEvaluation() {
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
-
 NextButton(nextTestEvaluation);
 
 export function prevTestEvaluation() {
@@ -65,7 +64,6 @@ export function prevTestEvaluation() {
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
-
 PreviousButton(prevTestEvaluation);
 
 export function answerTestEvaluation() {
@@ -76,7 +74,6 @@ export function answerTestEvaluation() {
   });
   checkIfCorrect();
 }
-
 AnswerButton(answerTestEvaluation);
 
 //go to testFinish
