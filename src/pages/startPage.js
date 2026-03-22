@@ -1,5 +1,6 @@
 import { loadTest } from "../features/test/testLoad.js";
 import { testYear, setTestYear, modus, setModus } from "../state.js";
+import { loadTimer } from "../features/test/testTimer.js";
 
 export function loadStartPage() {
   const introContainer = document.querySelector(".intro-container");
@@ -32,6 +33,7 @@ export function loadStartPage() {
       introContainer.style = "display: none";
       appContainer.style = "display: block";
       loadTest();
+      loadTimer();
     }, 200);
     btnPrevQ.style = "display:none";
   });

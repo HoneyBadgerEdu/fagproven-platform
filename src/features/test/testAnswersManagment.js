@@ -86,6 +86,7 @@ export function checkIfCorrect() {
       return;
     }
     pushAnswerInArray();
+    answerButton.style = "display: none";
     testContainer.style = "pointer-events: none";
   }
 }
