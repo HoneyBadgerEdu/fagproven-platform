@@ -7,10 +7,6 @@ import {
   modus,
 } from "../../state.js";
 
-export let inputValue = document.querySelectorAll(`input[name="option"]`);
-const testContainer = document.querySelector(".test-container");
-const answerButton = document.getElementById("answerBtn");
-
 export let storedAnswers = [];
 
 //push answer in array that stores answers
@@ -30,6 +26,7 @@ export function pushAnswerInArray() {
 
 //after answer button pressed evaluation of further marking of right answer
 function markAnswer() {
+  let inputValue = document.querySelectorAll(`input[name="option"]`);
   if (modus == "trening") {
     inputValue.forEach((option) => {
       if (
@@ -54,6 +51,8 @@ function markAnswer() {
 }
 
 export function checkIfCorrect() {
+  const answerButton = document.getElementById("answerBtn");
+  const testContainer = document.querySelector(".test-container");
   if (modus == "trening") {
     if (checkedAnswer == undefined) {
       window.alert("Svaret må velges");
@@ -92,6 +91,7 @@ export function checkIfCorrect() {
 }
 
 export function checkRadioIfAnswered() {
+  const answerButton = document.getElementById("answerBtn");
   let existingAnswer = storedAnswers.find(
     (item) => item.currentQuestionNumber === currentQuestionNumber,
   );

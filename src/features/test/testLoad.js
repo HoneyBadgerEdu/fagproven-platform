@@ -4,21 +4,15 @@ import {
   testYear,
   arrayOfRandomedQ,
   currentQuestionNumber,
-  setCurrentQuestionNumber,
   setRightAnswer,
-  rightAnswer,
   setAlternativeRightAnswer,
-  alternativeRightAnswer,
   setTestFileName,
-  checkedAnswer,
-  setCheckedAnswer,
 } from "../../state.js";
-
-const testContainer = document.querySelector(".test-container");
 
 import { loadButtons } from "./testNavigationButtons.js";
 
 export async function loadTest() {
+  const testContainer = document.querySelector(".test-container");
   try {
     testContainer.style.opacity = "0";
     testContainer.style.visibility = "hidden";

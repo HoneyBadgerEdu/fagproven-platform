@@ -1,13 +1,13 @@
-const timerElement = document.querySelector(".timer");
-let minsElement = document.getElementById("minutes");
-let secElement = document.getElementById("seconds");
 import { timer, setTimer, modus, setFinishedByTimer } from "../../state.js";
 import { endTestEvaluation } from "./testFinish.js";
 
 export function loadTimer() {
-    timerElement.addEventListener("click",()=>{
-        timerElement.classList.toggle("opacity")
-    })
+  let minsElement = document.getElementById("minutes");
+  let secElement = document.getElementById("seconds");
+  const timerElement = document.querySelector(".timer");
+  timerElement.addEventListener("click", () => {
+    timerElement.classList.toggle("opacity");
+  });
   if (modus == "trening") {
     return;
   } else if (modus == "exam") {

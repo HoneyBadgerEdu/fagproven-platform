@@ -1,7 +1,9 @@
 import { setArrayOfRandomedQ } from "./state.js";
-import { loadStartPage } from "./pages/startPage.js";
+import { startPage, loadStartPage } from "./pages/startPage.js";
+import { render } from "./router.js";
 
 addEventListener("DOMContentLoaded", () => {
+  render(startPage);
   loadStartPage();
   randomizeArray();
 });

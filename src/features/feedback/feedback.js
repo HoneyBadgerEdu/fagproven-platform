@@ -1,5 +1,6 @@
-  import { testFileName } from "../../state.js";
+import { testFileName } from "../../state.js";
 
+export function loadFeedback() {
   //for feedback
   const messageDiv = document.getElementById("messageForUser");
   const usersMessage = document.getElementById("messageText");
@@ -59,3 +60,4 @@
       submitBtn.textContent = "Sende rapport";
     }
   });
+}

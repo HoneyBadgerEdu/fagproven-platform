@@ -2,15 +2,12 @@ import {
   setCurrentQuestionNumber,
   currentQuestionNumber,
   setCheckedAnswer,
-  modus,
 } from "../../state.js";
 import { clearHTML } from "../../utils/dom.js";
 import { loadTest } from "./testLoad.js";
 import {
-  storedAnswers,
   checkIfCorrect,
   checkRadioIfAnswered,
-  inputValue,
 } from "./testAnswersManagment.js";
 import {
   NextButton,
@@ -21,10 +18,9 @@ import {
 
 import { endTestEvaluation } from "./testFinish.js";
 
-const messageDiv = document.getElementById("messageForUser");
-const usersMessage = document.getElementById("messageText");
-
 export function nextTestEvaluation() {
+  const messageDiv = document.getElementById("messageForUser");
+  const usersMessage = document.getElementById("messageText");
   clearHTML();
   if (currentQuestionNumber != 139) {
     setCurrentQuestionNumber(currentQuestionNumber + 1);
@@ -43,9 +39,10 @@ export function nextTestEvaluation() {
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
-NextButton(nextTestEvaluation);
 
 export function prevTestEvaluation() {
+  const messageDiv = document.getElementById("messageForUser");
+  const usersMessage = document.getElementById("messageText");
   clearHTML();
   if (currentQuestionNumber !== 0) {
     setCurrentQuestionNumber(currentQuestionNumber - 1);
@@ -64,23 +61,19 @@ export function prevTestEvaluation() {
   messageDiv.innerHTML = "";
   usersMessage.value = "";
 }
-PreviousButton(prevTestEvaluation);
 
 export function answerTestEvaluation() {
-  inputValue.forEach((option) => {
+  document.querySelectorAll(`input[name="option"]`).forEach((option) => {
     if (option.checked) {
       setCheckedAnswer(option.value);
     }
   });
   checkIfCorrect();
 }
-AnswerButton(answerTestEvaluation);
-
-//go to testFinish
-EndButton(endTestEvaluation);
 
 export function loadButtons() {
   NextButton(nextTestEvaluation);
   PreviousButton(prevTestEvaluation);
   AnswerButton(answerTestEvaluation);
+  EndButton(endTestEvaluation);
 }

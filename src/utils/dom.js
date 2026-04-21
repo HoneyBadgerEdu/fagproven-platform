@@ -1,17 +1,15 @@
-import { inputValue } from "../features/test/testAnswersManagment.js";
 import { setCheckedAnswer, setRightAnswer } from "../state.js";
 
-const testContainer = document.querySelector(".test-container");
-const answerButton = document.getElementById("answerBtn");
-
 export function clearHTML() {
+  const testContainer = document.querySelector(".test-container");
+  const answerButton = document.getElementById("answerBtn");
   document.getElementById("questionNumber").innerHTML = "";
   question.innerHTML = "";
   let answerx = document.querySelectorAll("label");
   for (let c = 0; c < answerx.length; c++) {
     answerx[c].innerHTML = "";
   }
-  inputValue.forEach((option) => {
+  document.querySelectorAll(`input[name="option"]`).forEach((option) => {
     option.classList.remove("correct", "wrong");
   });
   let explanation = document.querySelectorAll("i");
