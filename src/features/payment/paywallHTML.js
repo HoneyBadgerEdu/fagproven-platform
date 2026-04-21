@@ -4,7 +4,8 @@ export function paywallDialog() {
   <h3>Pay in USDT (TRC20)</h3>
   <div id="messageForUser">Don't refresh/leave this page during the transfer operation. Operation will be processed 
   and PIN showed afterwards. Important: choose only USDT TRC20 network to avoid loss of funds. 
-  It usually takes 3 mins for transaction to finish. Amount more then 1$ is needed to be detected. 
+  It usually takes around 3 mins for transaction to finish. Amount more then 1$ is needed to be detected. 
+  The easiest way to use app like Binance, Coinbase or ask someone who can send crypto.
   If there are any problems don't hesitate to take contact.</div>
   <b><p id="payment-status" style="display: none">Waiting for payment...</p></b>
   <input type="number" id="pay-input" required="true" min="2" placeholder="Enter the amount in USD$"></input>
