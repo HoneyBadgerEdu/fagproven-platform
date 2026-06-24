@@ -26,6 +26,7 @@ export function startPage() {
         hvor mye vil du gi. Pengene brukes for å bevare domain og hosting av
         nettsiden. <button id="payLink">Klikk</button>
         <br />
+        Alternativt er det mulig å vippse.
         <b>Hva med neste testblanken?</b> <br />
         For tiden i arbeid: <b>Vår 2024</b><br />
         Forventet ferdigstillelsesdato: <b>31.05.2026 - 31.08.2026</b> <br />
